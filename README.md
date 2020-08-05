@@ -1,2 +1,2 @@
 # Garden-Party
-A complex garden adventure, avoided by the faint of heart!
+A complex gardening adventure, not for the faint of heart!

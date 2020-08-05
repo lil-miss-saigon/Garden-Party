@@ -1,4 +1,4 @@
-var money = 150.00;
+var money = 15.00;
 var blinkInv, blinkMisc;
 
 function displayMoney() {
@@ -21,16 +21,20 @@ var revenueRel = 0.00;
 var messageQueue = [];
 
 function doThisThing() {
-    if ($("#plotWindow").attr("class").search("inactiveWindow") == -1 && messageQueue.length > 0) {
-        $(".announcementBox:last").remove();
+    $(".announcementBox").last().remove();
+    if ($("#plotWindow").attr("class").search("inactiveWindow") == -1) {
+        $(".announcementBoxCont").css("display", "inline");
+    } else {
+        $(".announcementBoxCont").css("display", "none");
+    }
+    if (messageQueue.length > 0) {
         $(".announcementBoxCont").append("<div class='announcementBox'>" + messageQueue[0] + "</div>");
         messageQueue.shift();
-    } else {
-        $(".announcementBox:last").remove();
     }
-    setTimeout(function doThisBigThing() {
+    var thingThis = setTimeout(function () {
+        $(".announcementBox").last().remove();
         doThisThing();
-    }, 1000);
+    }, 1100)
 }
 
 function miniAnnounce(div) {
@@ -1119,6 +1123,7 @@ $("#gardenButton").click(function () {
     $("#plotWindow").removeClass("inactiveWindow");
     $("#announcementWindow").addClass("inactiveWindow");
     $("#miscWindow").addClass("inactiveWindow");
+    $(".announcementBox").removeClass("inactiveWindow");
     $("#gardenButton").addClass("activeTab");
     $("#announcementButton").removeClass("activeTab");
     $("#miscButton").removeClass("activeTab");
@@ -1134,9 +1139,11 @@ $("#announcementButton").click(function () {
     $("#miscButton").removeClass("activeTab");
     $("#survivalGuide").css("display", "none");
     $("#glossary").css("display", "none");
+    $(".announcementBox").addClass("inactiveWindow");
 });
 $("#miscButton").click(function () {
     var clearIt = clearInterval(blinkMisc);
+    $(".announcementBox").addClass("inactiveWindow");
     $("#plotWindow").addClass("inactiveWindow");
     $("#announcementWindow").addClass("inactiveWindow");
     $("#miscWindow").removeClass("inactiveWindow");
