@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Garden Party</title>
+    <link rel="icon" href="icon.PNG">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div id="gameHead">
+        Garden Party
+    </div>
+    <div id="gameWrap">
+        <div id="topMenu">
+            <div id="gameMenu">
+                <div id="gameMenuItemWrap">
+                    <div class="gameMenuItem activeTab" id="gardenButton">Garden</div> │
+                    <div class="gameMenuItem" id="announcementButton">Announcements</div> │
+                    <div class="gameMenuItem" id="miscButton">Misc.</div>
+                </div>
+            </div>
+            <div id="hourglass">
+                <span id="hourDisplay" class="timeDisplay">00</span>:<span id="minuteDisplay">00</span>
+                Day <span id="dayDisplay" class="timeDisplay">1</span>
+            </div>
+        </div>
+        <div id="windowWrap">
+            <div class="window infoWindow" id="plotInfo">
+                <div id="infoWrap">
+                    <div id="infoMenu">
+                        <div class="infoMenuItem activeTab" id="infoTab">Info</div> │
+                        <div class="infoMenuItem" id="plotsTab">Plots</div> │
+                        <div class="infoMenuItem" id="invTab">Inventory</div>
+                    </div>
+                    <div id="plotInfoText">
+                        Garden Info
+                        <br>
+                        <br>
+                        Potted: <span class="potCount">0</span>/<span class="slotCount">32</span>
+                        <br>
+                        Filled: <span class="soilCount">0</span>/<span class="potCount">0</span>
+                        <br>
+                        Planted: <span class="plantCount">0</span>/<span class="soilCount">0</span>
+                    </div>
+                    <div id="plotText" class="inactiveWindow">
+                        Plots
+                        <br>
+                        <br>
+                        <span class="plotSelect activeTab" onclick="plotSelection(this)">Plot 1<br></span>
+                    </div>
+                    <div id="invText" class="inactiveWindow">
+                        Inventory
+                        <br>
+                        <br>
+                        <span class="invItem invPot">Clay Pot<br></span>
+                        <span class="invItem invPot">Clay Pot<br></span>
+                        <span class="invItem invSoil">Bag of Soil (60)(8)(112)<br></span>
+                        <span class="invItem invSoil">Bag of Soil (43)(12)(203)<br></span>
+                        <span class="invItem invSeeds invAloe">Aloe Seeds (x1)<br></span>
+                        <span class="invItem invSeeds invAloe">Aloe Seeds (x1)<br></span>
+                        <span class="invItem"></span>
+                    </div>
+                    <div id="potText" style="margin-top: 15px;" class="inactiveWindow">
+                        Pot <span id="potName"></span> Info
+                        <br>
+                        <br>
+                        <span id="potAppend"></span><br>
+                    </div>
+                </div>
+            </div>
+            <div class="window" id="middleWindow">
+                <div id="plotWindow" class="eishfkdjfskf">
+                    <div class="plotWrap" style="margin-bottom: 5px;">
+                        <div id="plotNameText">
+                            <span class="plotNum" style="margin-left: 2px;">Plot 1</span>
+                        </div>
+                        <div class="plot">
+                        </div>
+                    </div>
+                </div>
+                <div id="announcementWindow" class="inactiveWindow">
+                    <span class="announcementFirst">No announcements yet!</span>
+                    <span class="announcementAppend">&nbsp;</span>
+                </div>
+                <div id="miscWindow" class="inactiveWindow">
+                    <u>
+                        <span id="openSurvivalGuide">Survival Guide</span>
+                    </u>
+                    <br>
+                    <u>
+                        <span id="openGlossary">Glossary</span>
+                    </u>
+                    <br>
+                    <u>
+                        <span id="openPatchNotes">Patch Notes</span>
+                    </u>
+                </div>
+                <div id="survivalGuide">
+                    <div id="closeSurvivalGuide">&gt; close &lt;</div>
+                    <div><u>Survival Guide</u></div>
+                    <br>
+                    <div>
+                        Soil contains all the essential minerals that make plant life possible, the most important being
+                        Nitrogen (N), Phosphorus (P), and Potassium (K).
+                        <br>
+                        <br>
+                        A bag of soil in your inventory displays the balance of these elements in its randomly generated
+                        (N)(P)(K) ratio.
+                        <br>
+                        <br>
+                        Higher-grade soil yields a ratio within a range progressively closer to the ideal ratio of
+                        (50)(10)(150).
+                        <br>
+                        <br>
+                        The closer a pot's (N)(P)(K) is to the ideal ratio, the higher its plant's health will be.
+                        Healthy plants generate more money than sickly ones, and are more likely to survive weeds,
+                        diseases, infestations, and bad weather. A plant's max revenue is the highest it can generate at
+                        peak health.
+                        <br>
+                        <br>
+                        Fertilizer grants a slight bonus to a specific element. Get closer to the ideal ratio by
+                        choosing the right grade of fertilizer.
+                        <br>
+                        <br>
+                        * Survive storms by waiting them out
+                        <br>
+                        * Survive infestations by locating and &nbsp;&nbsp;killing the source
+                        <br>
+                        * Survive diseases by removing all &nbsp;&nbsp;infected plants
+                        <br>
+                        * Watch out for weeds and remove them &nbsp;&nbsp;as needed
+                    </div>
+                </div>
+                <div id="glossary">
+                    <div id="closeGlossary">&gt; close &lt;</div>
+                    <div><u>Glossary</u></div>
+                    <br>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="announcementBoxCont"></div>
+            <div class="window shopWindow" id="plotShop">
+                <div id="shopNameText">Shop <span id="moneyDisplay"></span></div>
+                <div id="shopMenu">
+                    <div class="infoMenuItem activeTab" id="shopPlotsTab">Plots</div> │
+                    <div class="infoMenuItem" id="shopPotsTab">Pots</div> │
+                    <div class="infoMenuItem" id="shopFillTab">Fill</div> │
+                    <div class="infoMenuItem" id="shopSeedsTab">Seeds</div>
+                </div>
+                <div id="shopPlots">
+                    <div id="plotShopItem" class="shopItem">
+                        <img class="shopImg" src="IMG_0235.PNG">
+                        <div id="plotShopInfo" class="shopInfo">
+                            <div>Plot (4 x 8)</div>
+                            <br>
+                            <div id="plotPrice">Price: <span id="plotPriceInsert">$300.00</span></div>
+                            <div id="plotMR">32 slots</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="shopPots" class="inactiveWindow">
+                    <div id="potShop" class="shopItem">
+                        <img class="shopImg" id="potShopImg" src="pot.PNG">
+                        <div id="potInfo" class="shopInfo">
+                            <div>Clay Pot</div>
+                            <br>
+                            <div id="potPrice">Price: <span id="potPriceDisplay">$5.97</span></div>
+                            <div id="potMR">32 fl oz</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="shopFill" class="inactiveWindow">
+                    <div class="content">
+                        <div class="fillMenu" style="border-right: none; width: 303px; padding-top: 6px;">
+                            <div class="infoMenuItem">Soil</div>
+                        </div>
+                        <div id="soil1Shop" class="shopItem">
+                            <img class="shopImg" src="IMG_0224.PNG">
+                            <div id="soil1Info" class="shopInfo">
+                                <div>Grade I</div>
+                                <br>
+                                <div id="soil1Price">Price: <span id="soil1PriceDisplay">$3.99</span></div>
+                                <div id="soil1MR">Max deviance: 50%</div>
+                            </div>
+                        </div>
+                        <div id="soil2Shop" class="shopItem">
+                            <img class="shopImg" src="IMG_0224.PNG">
+                            <div id="soil2Info" class="shopInfo">
+                                <div>Grade II</div>
+                                <br>
+                                <div id="soil2Price">Price: <span id="soil2PriceDisplay">$16.38</span></div>
+                                <div id="soil2MR">Max deviance: 25%</div>
+                            </div>
+                        </div>
+                        <div id="soil3Shop" class="shopItem">
+                            <img class="shopImg" src="IMG_0224.PNG">
+                            <div id="soil3Info" class="shopInfo">
+                                <div>Grade III</div>
+                                <br>
+                                <div id="soil3Price">Price: <span id="soil3PriceDisplay">$36.95</span></div>
+                                <div id="soil3MR">Max deviance: 10%</div>
+                            </div>
+                        </div>
+                        <div class="fillMenu" style="border-right: none; width: 303px;">
+                            <div class="infoMenuItem">Fertilizer</div>
+                        </div>
+                        <div id="fertilizer1Shop" class="shopItem fertShop">
+                            <img class="shopImg" src="IMG_0223.PNG">
+                            <div id="fertilizer1Info" class="shopInfo">
+                                <div>Grade I</div>
+                                <br>
+                                <div id="fertilizer1Price">Price: <span id="fert1Price">$5.99</span></div>
+                                <div id="fertilizer1MR">Bonus (+5%):
+                                    <span id="fert1N" class="fertNPK" onclick="buyFert(this)">±N</span>
+                                    <span id="fert1P" class="fertNPK" onclick="buyFert(this)">±P</span>
+                                    <span id="fert1K" class="fertNPK" onclick="buyFert(this)">±K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fertilizer2Shop" class="shopItem fertShop">
+                            <img class="shopImg" src="IMG_0223.PNG">
+                            <div id="fertilizer2Info" class="shopInfo">
+                                <div>Grade II</div>
+                                <br>
+                                <div id="fertilizer2Price">Price: <span id="fert2Price">$9.99</span></div>
+                                <div id="fertilizer2MR">Bonus (+10%):
+                                    <span id="fert2N" class="fertNPK" onclick="buyFert(this)">±N</span>
+                                    <span id="fert2P" class="fertNPK" onclick="buyFert(this)">±P</span>
+                                    <span id="fert2K" class="fertNPK" onclick="buyFert(this)">±K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fertilizer3Shop" class="shopItem fertShop">
+                            <img class="shopImg" src="IMG_0223.PNG">
+                            <div id="fertilizer3Info" class="shopInfo">
+                                <div>Grade III</div>
+                                <br>
+                                <div id="fertilizer3Price">Price: <span id="fert3Price">$17.49</span></div>
+                                <div id="fertilizer3MR">Bonus (+15%):
+                                    <span id="fert3N" class="fertNPK" onclick="buyFert(this)">±N</span>
+                                    <span id="fert3P" class="fertNPK" onclick="buyFert(this)">±P</span>
+                                    <span id="fert3K" class="fertNPK" onclick="buyFert(this)">±K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fertilizer4Shop" class="shopItem fertShop">
+                            <img class="shopImg" src="IMG_0223.PNG">
+                            <div id="fertilizer4Info" class="shopInfo">
+                                <div>Grade IV</div>
+                                <br>
+                                <div id="fertilizer4Price">Price: <span id="fert4Price">$25.99</span></div>
+                                <div id="fertilizer4MR">Bonus (+20%):
+                                    <span id="fert4N" class="fertNPK" onclick="buyFert(this)">±N</span>
+                                    <span id="fert4P" class="fertNPK" onclick="buyFert(this)">±P</span>
+                                    <span id="fert4K" class="fertNPK" onclick="buyFert(this)">±K</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fertilizer5Shop" class="shopItem fertShop" style="border-bottom: none;">
+                            <img class="shopImg" src="IMG_0223.PNG">
+                            <div id="fertilizer5Info" class="shopInfo">
+                                <div>Grade V</div>
+                                <br>
+                                <div id="fertilizer5Price">Price: <span id="fert5Price">$39.97</span></div>
+                                <div id="fertilizer5MR">Bonus (+25%):
+                                    <span id="fert5N" class="fertNPK" onclick="buyFert(this)">±N</span>
+                                    <span id="fert5P" class="fertNPK" onclick="buyFert(this)">±P</span>
+                                    <span id="fert5K" class="fertNPK" onclick="buyFert(this)">±K</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="shopSeeds" class="inactiveWindow">
+                    <div id="aloeShop" class="shopItem">
+                        <img class="shopImg" id="aloeShopImg" src="aloe.PNG">
+                        <div id="aloeInfo" class="shopInfo">
+                            <div>Aloe Vera</div>
+                            <br>
+                            <div id="aloePrice">Price: <span id="aloePriceDisplay">$2.75</span></div>
+                            <div id="aloeMR">Max revenue: $0.10/min</div>
+                        </div>
+                    </div>
+                    <div id="tulipShop" class="shopItem">
+                        <img class="shopImg" id="tulipShopImg" src="tulip.PNG">
+                        <div id="tulipInfo" class="shopInfo">
+                            <div>Tulip</div>
+                            <br>
+                            <div id="tulipPrice">Price: <span id="tulipPriceDisplay">$4.99</span></div>
+                            <div id="tulipMR">Max revenue: $0.15/min</div>
+                        </div>
+                    </div>
+                    <div id="succulentShop" class="shopItem">
+                        <img class="shopImg" id="succulentShopImg" src="succulent.PNG">
+                        <div id="succulentInfo" class="shopInfo">
+                            <div>Succulent</div>
+                            <br>
+                            <div id="succulentPrice">Price: <span id="succulentPriceDisplay">$11.99</span></div>
+                            <div id="succulentMR">Max revenue: $0.25/min</div>
+                        </div>
+                    </div>
+                    <div id="cornShop" class="shopItem">
+                        <img class="shopImg" id="cornShopImg" src="corn.PNG">
+                        <div id="cornInfo" class="shopInfo">
+                            <div>Corn</div>
+                            <br>
+                            <div id="cornPrice">Price: <span id="cornPriceDisplay">$29.95</span></div>
+                            <div id="cornMR">Max revenue: $0.50/min</div>
+                        </div>
+                    </div>
+                    <div id="potatoShop" class="shopItem">
+                        <img class="shopImg" id="potatoShopImg" src="potato.PNG">
+                        <div id="potatoInfo" class="shopInfo">
+                            <div>Potato</div>
+                            <br>
+                            <div id="potatoPrice">Price: <span id="potatoPriceDisplay">$62.99</span></div>
+                            <div id="potatoMR">Max revenue: $0.95/min</div>
+                        </div>
+                    </div>
+                    <div id="flytrapShop" class="shopItem">
+                        <img class="shopImg" id="flytrapShopImg" src="flytrap.PNG">
+                        <div id="flytrapInfo" class="shopInfo">
+                            <div>Venus Flytrap</div>
+                            <br>
+                            <div id="flytrapPrice">Price: <span id="flytrapPriceDisplay">$95.98</span></div>
+                            <div id="flytrapMR">Max revenue: $1.50/min</div>
+                        </div>
+                    </div>
+                    <div id="truffleShop" class="shopItem" style="border-bottom: none;">
+                        <img class="shopImg" id="truffleShopImg" src="truffle.PNG">
+                        <div id="truffleInfo" class="shopInfo">
+                            <div>Truffle</div>
+                            <br>
+                            <div id="trufflePrice">Price: <span id="trufflePriceDisplay">$131.98</span></div>
+                            <div id="truffleMR">Max revenue: $2.50/min</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<div id="readmeWarning">
+    <img id="GNU" src="NewGNU.gif">
+    <div id="quote">Don't forget to view the <u>Survival Guide</u> and the <u>Glossary</u> in the <u>Misc.</u> menu for
+        tips and tricks to get you started!<br><br></div>
+    <div id="closeWarning">&gt; close &lt;</div>
+</div>
+<div id="patchNotes">
+    <div id="closePatchNotes">&gt; close &lt;</div>
+    <div><u>Patch Notes</u></div>
+    <br>
+    <div>No patch notes yet! Welcome to the beta!</div>
+</div>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jqueryUI.js"></script>
+<script type="text/javascript" src="script.js"></script>
+
+</html>

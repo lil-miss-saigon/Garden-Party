@@ -1,0 +1,555 @@
+@font-face {
+    font-family: StandardLocal;
+    src: url("Px437_IBM_VGA9.ttf");
+}
+
+html,
+body {
+    overscroll-behavior: none;
+    margin: 0px;
+    margin-left: 6px;
+    margin-bottom: 11px;
+    line-height: 18px;
+    padding: 0px;
+    position: absolute;
+    background-color: #000000;
+    color: #ffffff;
+    cursor: default;
+    font-family: StandardLocal;
+    -moz-osx-font-smoothing: graycale;
+    -webkit-font-smoothing: none;
+}
+
+* {
+    background-color: #000000;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+::selection {
+    color: inherit;
+    background-color: inherit;
+}
+
+.plot {
+    padding: 3px;
+    padding-top: 0px;
+    box-sizing: border-box;
+    width: 354px;
+    height: 699px;
+}
+
+#announcementWindow,
+#miscWindow {
+    padding: 6px;
+    width: 354px;
+    box-sizing: border-box;
+}
+
+.window {
+    position: absolute;
+    box-sizing: border-box;
+    border-top: 3px solid #ffffff;
+    overflow: scroll;
+    height: calc(100vh - 73px);
+}
+
+.infoWindow {
+    padding: 6px;
+    width: 249px;
+    border: 3px solid #ffffff;
+}
+
+.shopWindow {
+    border: 3px solid #ffffff;
+    margin-left: 603px;
+    width: 306px;
+    overflow-x: hidden;
+}
+
+.potSquare {
+    height: 83px;
+    width: 83px;
+    display: inline-block;
+    margin: 2px;
+    cursor: pointer;
+    margin-top: 0px;
+}
+
+#windowWrap {
+    position: absolute;
+}
+
+.potContent {
+    width: 100%;
+    height: 100%;
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.infoMenuItem,
+.potPlace {
+    display: inline;
+    cursor: pointer;
+}
+
+.soilType,
+.plantType,
+.fertNPK {
+    cursor: pointer;
+}
+
+.infoMenuItem:hover,
+.potPlace:hover,
+.soilType:hover,
+.plantType:hover,
+#closeWarning:hover,
+#closePatchNotes:hover,
+.fertNPK:hover,
+#removeWeed:hover,
+#removePest:hover,
+.addFertButton:hover {
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    transition-delay: 90ms;
+}
+
+.infoMenuItem:hover::selection,
+.potPlace:hover::selection,
+.soilType:hover::selection,
+.plantType:hover::selection,
+#closeWarning:hover::selection,
+#closePatchNotes:hover::selection,
+.fertNPK:hover::selection,
+#removeWeed:hover::selection,
+#removePest:hover::selection,
+.addFertButton:hover::selection {
+    background-color: transparent;
+    color: #000000;
+    transition-delay: 90ms;
+}
+
+#infoMenu {
+    border: 3px solid #ffffff;
+    border-right: none;
+    margin: -9px;
+    height: 35px;
+    width: 246px;
+    padding: 6px;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+
+img {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#infoWrap {
+    position: absolute;
+}
+
+#plotInfoText,
+#invText,
+#plotText {
+    margin-top: 15px;
+}
+
+#plotNameText {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#shopNameText {
+    border: 3px solid #ffffff;
+    border-right: none;
+    margin: -3px;
+    height: 35px;
+    width: 306px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+#topMenu {
+    border: 3px solid #ffffff;
+    height: 35px;
+    margin-bottom: -3px;
+    width: 909px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+#gameHead {
+    position: absolute;
+    margin-bottom: -3px;
+    padding: 6px;
+    white-space: nowrap;
+    width: 119px;
+    margin-left: 17px;
+    z-index: 2;
+    background-color: #000000;
+    margin-top: 7px;
+    box-sizing: border-box;
+}
+
+#gameMenu {
+    width: 400px;
+    margin-left: 220px;
+}
+
+#gameMenuItemWrap {
+    width: fit-content;
+    margin: auto;
+}
+
+.gameMenuItem {
+    display: inline;
+    cursor: pointer;
+}
+
+.gameMenuItem:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transition-delay: 90ms;
+}
+
+.gameMenuItem:hover::selection {
+    background-color: transparent;
+    color: #000000;
+    transition-delay: 100ms;
+}
+
+#gameWrap {
+    position: absolute;
+    top: 20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.plotSelect {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.inactiveWindow {
+    display: none;
+}
+
+#shopMenu,
+.fillMenu {
+    border: 3px solid #ffffff;
+    border-right: none;
+    margin-top: -3px;
+    margin-left: -3px;
+    margin-right: -3px;
+    height: 35px;
+    width: 306px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+#moneyDisplay {
+    float: right;
+}
+
+.potPlace {
+    z-index: 3;
+}
+
+:focus {
+    outline: none;
+}
+
+.plotsImg {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    height: 83px;
+    width: 83px;
+    margin: 108px;
+    margin-top: 5px;
+}
+
+.shopImg {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+    height: 83px;
+    width: 83px;
+    margin: 5px;
+    margin-bottom: 0px;
+    vertical-align: top;
+}
+
+.shopInfo {
+    position: absolut;
+    margin-left: 93px;
+    margin-top: -77px;
+    height: 77px;
+    width: 200px;
+}
+
+.shopItem {
+    padding-bottom: 5px;
+    cursor: pointer;
+    width: 300px;
+    border-bottom: 3px solid #ffffff;
+}
+
+#shopFill {
+    position: absolute;
+    overflow: scroll;
+    height: calc(100vh - 143px);
+}
+
+#hourglass {
+    position: absolute;
+    top: 10px;
+    width: 200px;
+    right: 6px;
+    float: right;
+    text-align: right;
+    height: auto;
+}
+
+#announcementWindow {
+    padding-bottom: 0px;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+#readmeWarning {
+    background-color: #000000;
+    position: fixed;
+    height: 189px;
+    width: 454px;
+    left: 219px;
+    top: 94px;
+    z-index: 1000;
+    border: solid #ffffff 3px;
+}
+
+#GNU {
+    height: 175px;
+    border: 3px solid #ffffff;
+    vertical-align: top;
+    margin-left: 4px;
+    margin-top: 4px;
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+#quote {
+    display: inline-block;
+    width: 250px;
+    margin-top: 6px;
+}
+
+#closeWarning {
+    float: right;
+    margin-top: -16px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+#closePatchNotes,
+#closeSurvivalGuide,
+#closeGlossary {
+    float: right;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+#patchNotes {
+    background-color: #000000;
+    position: fixed;
+    display: none;
+    height: 189px;
+    width: 454px;
+    left: 215px;
+    top: 90px;
+    z-index: 1000;
+    border: solid #ffffff 3px;
+    padding-left: 6px;
+    padding-top: 6px;
+}
+
+#openPatchNotes:hover,
+#openSurvivalGuide:hover,
+#closeSurvivalGuide:hover,
+#openGlossary:hover,
+#closeGlossary:hover,
+.plotSelect:hover {
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#openPatchNotes:hover::selection,
+#openSurvivalGuide:hover::selection,
+#closeSurvivalGuide:hover::selection,
+#openGlossary:hover::selection,
+#closeGlossary:hover::selection,
+.plotSelect:hover::selection {
+    background-color: transparent;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fertShop {
+    cursor: default;
+    padding-right: -10px;
+}
+
+#survivalGuide,
+#glossary {
+    background-color: #000000;
+    position: absolute;
+    display: none;
+    height: 719px;
+    width: 348px;
+    top: 0px;
+    z-index: 1000;
+    border: solid #ffffff 3px;
+    border-bottom: none;
+    border-top: none;
+    padding-left: 6px;
+    margin-left: -3px;
+    padding-top: 6px;
+}
+
+.blinkOn {
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+}
+
+.blinkOff {
+    text-decoration: none;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#middleWindow {
+    margin-left: 249px;
+    border-bottom: solid 3px #ffffff;
+}
+
+#plotWindow {
+    margin-top: 6px;
+}
+
+#shopSeeds {
+    overflow: scroll;
+    height: calc(100vh - 143px);
+}
+
+.plotWrap {
+    width: 354px;
+}
+
+.activeTab {
+    text-decoration: underline;
+}
+
+.activeTab:hover {
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: underline;
+    transition-delay: 90ms;
+}
+
+.activeTab:hover::selection {
+    background-color: transparent;
+    color: #ffffff;
+    transition-delay: 100ms;
+    text-decoration: underline;
+}
+
+.alertOn {
+    background-color: #aa0000;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.alertOff {
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.alertBackgroundOn {
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+}
+
+.alertBackgroundOff {
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.alertWeatherOn {
+    background-color: #00aa00;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.alertWeatherOff {
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.bolded {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.underlined {
+    text-decoration: underline;
+}
+
+.announcementBox {
+    border: 3px solid #ffffff;
+    margin: -3px;
+    left: 271px;
+    height: 35px;
+    width: 360px;
+    padding: 6px;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 24px;
+    z-index: 50000;
+    text-align: center;
+}
