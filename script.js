@@ -2371,9 +2371,9 @@ $(document).ready(function () {
     var timeDiff = Math.floor(Math.random().toFixed(1) * 7000) + 5;
     setTimeout("seasonMake()", timeDiff);
 });
-$("#gameHead").click(function () {
-    alert(diseaseId.length);
-});
+// $("#gameHead").click(function () {
+//     alert(diseaseId.length);
+// });
 $(document).ready(function () {
     blinkInv = setInterval(function () {
         blinkElement("#invTab");
