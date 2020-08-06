@@ -1975,7 +1975,7 @@ function weatherFunc() {
                         lastWeather = weather;
                         weatherFunc();
                         constitutionBonus = " ";
-                        //calcPlantInfo();
+                        calcPlantInfo(2);
                         if (corresNum == plantEq) {
                             plantStats();
                         }
@@ -2035,7 +2035,7 @@ function weatherFunc() {
                         lastWeather = weather;
                         weatherFunc();
                         constitutionBonus = " ";
-                        //calcPlantInfo();
+                        calcPlantInfo(2);
                         if (corresNum == plantEq) {
                             plantStats();
                         }
@@ -2122,7 +2122,7 @@ function weatherFunc() {
                         lastWeather = weather;
                         weatherFunc();
                         constitutionBonus = " ";
-                        //calcPlantInfo();
+                        calcPlantInfo(2);
                         if (corresNum == plantEq) {
                             plantStats();
                         }
@@ -2144,7 +2144,7 @@ function weatherFunc() {
                         lastWeather = weather;
                         weatherFunc();
                         constitutionBonus = " ";
-                        //calcPlantInfo();
+                        calcPlantInfo(2);
                         if (corresNum == plantEq) {
                             plantStats();
                         }
@@ -2202,7 +2202,7 @@ function weatherFunc() {
                         lastWeather = weather;
                         weatherFunc();
                         constitutionBonus = " ";
-                        //calcPlantInfo();
+                        calcPlantInfo(2);
                         if (corresNum == plantEq) {
                             plantStats();
                         }
@@ -2259,7 +2259,7 @@ function weatherFunc() {
                         lastWeather = weather;
                         weatherFunc();
                         constitutionBonus = " ";
-                        //calcPlantInfo();
+                        calcPlantInfo(2);
                         if (corresNum == plantEq) {
                             plantStats();
                         }
