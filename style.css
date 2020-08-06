@@ -406,7 +406,8 @@ a {
 #closeSurvivalGuide:hover,
 #openGlossary:hover,
 #closeGlossary:hover,
-.plotSelect:hover {
+.plotSelect:hover,
+a:hover {
     background-color: #ffffff;
     color: #000000;
     text-decoration: none;
@@ -418,7 +419,8 @@ a {
 #closeSurvivalGuide:hover::selection,
 #openGlossary:hover::selection,
 #closeGlossary:hover::selection,
-.plotSelect:hover::selection {
+.plotSelect:hover::selection,
+a:hover::selection {
     background-color: transparent;
     color: #000000;
     text-decoration: none;
@@ -435,16 +437,23 @@ a {
     background-color: #000000;
     position: absolute;
     display: none;
-    height: 719px;
+    overflow-x: hidden;
     width: 348px;
     top: 0px;
     z-index: 1000;
     border: solid #ffffff 3px;
     border-bottom: none;
+    border-right: none;
     border-top: none;
     padding-left: 6px;
     margin-left: -3px;
     padding-top: 6px;
+}
+
+hr {
+    height: 0px;
+    border: 1.5px solid #ffffff;
+    margin-left: -10px;
 }
 
 .blinkOn {

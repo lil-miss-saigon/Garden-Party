@@ -427,6 +427,10 @@ function calcPlantInfo(signal) {
         immunity = (healthCalc / 2);
         $(".potSquare").eq(corresNum).data("constitution", constitution);
         $(".potSquare").eq(corresNum).data("immunity", immunity);
+    } else if (signal == 2) {
+        immunity = (healthCalc / 2);
+        $(".potSquare").eq(corresNum).data("constitution", constitution);
+        $(".potSquare").eq(corresNum).data("immunity", immunity);
     }
     if ($(".potSquare").eq(corresNum).data("plantType") === "aloe") {
         maxRevenue = aloeMR;
@@ -487,14 +491,17 @@ function plantStats() {
     var corresNum;
     corresNum = $("#potName").html() - 1;
     if (season === "Winter") {
-        $("#potAppend").html("Generating: $" + $(".potSquare").eq(corresNum).data("revenue") + "/min<br>Health: " + $(".potSquare").eq(corresNum).data("healthHint") + "&nbsp;(-25%)<br><br>Photosynthesis: " + $(".potSquare").eq(corresNum).data("photosynthesis").toFixed(1) + "/10<br>Respiration: " + $(".potSquare").eq(corresNum).data("respiration").toFixed(1) + "/10<br>Water Retention: " + $(".potSquare").eq(corresNum).data("waterRetention").toFixed(1) + "/10<br><br>Constitution: +" + $(".potSquare").eq(corresNum).data("constitution").toFixed(1) + "/10<br>Immunity: +" + $(".potSquare").eq(corresNum).data("immunity").toFixed(1) + "/10 " + constitutionBonus + "<br><span id='removeWeed' onclick='removeWeed()'></span>" + "<span id='removePest' onclick='removePest()'></span>" + "<span id='addFert'></span>");
+        $("#potAppend").html("Generating: $" + $(".potSquare").eq(corresNum).data("revenue") + "/min<br>Health: " + $(".potSquare").eq(corresNum).data("healthHint") + "&nbsp;(-25%)<br><br>Photosynthesis: " + $(".potSquare").eq(corresNum).data("photosynthesis").toFixed(1) + "/10<br>Respiration: " + $(".potSquare").eq(corresNum).data("respiration").toFixed(1) + "/10<br>Water Retention: " + $(".potSquare").eq(corresNum).data("waterRetention").toFixed(1) + "/10<br><br>Constitution: +" + $(".potSquare").eq(corresNum).data("constitution").toFixed(1) + "/10<br>Immunity: +" + $(".potSquare").eq(corresNum).data("immunity").toFixed(1) + "/10 " + constitutionBonus + "<br><span id='removeWeed' onclick='removeWeed()'></span>" + "<span id='removePest' onclick='removePest()'></span>" + "<span id='removePlant' onclick='removePlant()'></span>" + "<span id='addFert'></span>");
     } else if (season === "Spring") {
-        $("#potAppend").html("Generating: $" + $(".potSquare").eq(corresNum).data("revenue") + "/min<br>Health: " + $(".potSquare").eq(corresNum).data("healthHint") + "&nbsp;(+10%)<br><br>Photosynthesis: " + $(".potSquare").eq(corresNum).data("photosynthesis").toFixed(1) + "/10<br>Respiration: " + $(".potSquare").eq(corresNum).data("respiration").toFixed(1) + "/10<br>Water Retention: " + $(".potSquare").eq(corresNum).data("waterRetention").toFixed(1) + "/10<br><br>Constitution: +" + $(".potSquare").eq(corresNum).data("constitution").toFixed(1) + "/10<br>Immunity: +" + $(".potSquare").eq(corresNum).data("immunity").toFixed(1) + "/10 " + constitutionBonus + "<br><span id='removeWeed' onclick='removeWeed()'></span>" + "<span id='removePest' onclick='removePest()'></span>" + "<span id='addFert'></span>");
+        $("#potAppend").html("Generating: $" + $(".potSquare").eq(corresNum).data("revenue") + "/min<br>Health: " + $(".potSquare").eq(corresNum).data("healthHint") + "&nbsp;(+10%)<br><br>Photosynthesis: " + $(".potSquare").eq(corresNum).data("photosynthesis").toFixed(1) + "/10<br>Respiration: " + $(".potSquare").eq(corresNum).data("respiration").toFixed(1) + "/10<br>Water Retention: " + $(".potSquare").eq(corresNum).data("waterRetention").toFixed(1) + "/10<br><br>Constitution: +" + $(".potSquare").eq(corresNum).data("constitution").toFixed(1) + "/10<br>Immunity: +" + $(".potSquare").eq(corresNum).data("immunity").toFixed(1) + "/10 " + constitutionBonus + "<br><span id='removeWeed' onclick='removeWeed()'></span>" + "<span id='removePest' onclick='removePest()'></span>" + "<span id='removePlant' onclick='removePlant()'></span>" + "<span id='addFert'></span>");
     } else {
-        $("#potAppend").html("Generating: $" + $(".potSquare").eq(corresNum).data("revenue") + "/min<br>Health: " + $(".potSquare").eq(corresNum).data("healthHint") + "<br><br>Photosynthesis: " + $(".potSquare").eq(corresNum).data("photosynthesis").toFixed(1) + "/10<br>Respiration: " + $(".potSquare").eq(corresNum).data("respiration").toFixed(1) + "/10<br>Water Retention: " + $(".potSquare").eq(corresNum).data("waterRetention").toFixed(1) + "/10<br><br>Constitution: +" + $(".potSquare").eq(corresNum).data("constitution").toFixed(1) + "/10<br>Immunity: +" + $(".potSquare").eq(corresNum).data("immunity").toFixed(1) + "/10 " + constitutionBonus + "<br><span id='removeWeed' onclick='removeWeed()'></span>" + "<span id='removePest' onclick='removePest()'></span>" + "<span id='addFert'></span>");
+        $("#potAppend").html("Generating: $" + $(".potSquare").eq(corresNum).data("revenue") + "/min<br>Health: " + $(".potSquare").eq(corresNum).data("healthHint") + "<br><br>Photosynthesis: " + $(".potSquare").eq(corresNum).data("photosynthesis").toFixed(1) + "/10<br>Respiration: " + $(".potSquare").eq(corresNum).data("respiration").toFixed(1) + "/10<br>Water Retention: " + $(".potSquare").eq(corresNum).data("waterRetention").toFixed(1) + "/10<br><br>Constitution: +" + $(".potSquare").eq(corresNum).data("constitution").toFixed(1) + "/10<br>Immunity: +" + $(".potSquare").eq(corresNum).data("immunity").toFixed(1) + "/10 " + constitutionBonus + "<br><span id='removeWeed' onclick='removeWeed()'></span>" + "<span id='removePest' onclick='removePest()'></span>" + "<span id='removePlant' onclick='removePlant()'></span>" + "<span id='addFert'></span>");
     }
     if ($(".potSquare").eq(corresNum).data("weed") == true) {
         $("#removeWeed").html("<br>&gt; Remove weed &lt;");
+    }
+    if ($(".potSquare").eq(corresNum).data("diseaseType") !== "none") {
+        $("#removePlant").html("<br>&gt; Remove plant &lt;");
     }
     if ($(".invFertilizer").length > 0 && $(".potSquare").eq(corresNum).data("fertType") == "00") {
         for (var w = 0; w < $(".invFertilizer").length; w = w + 1) {
@@ -1684,7 +1691,7 @@ function removeWeed(div) {
     pestArray();
     blinkBugWeed();
     var plantType = $(".potSquare").eq(corresNum).data("plantType");
-    calcPlantInfo();
+    calcPlantInfo(2);
     moneyMoney();
     plantStats();
     if (plantType === "aloe") {
