@@ -16,7 +16,8 @@ var array = [];
 var plantId = [],
     weedId = [],
     soilId = [],
-    potId = [];
+    potId = [],
+    diseaseId = [];
 var revenueRel = 0.00;
 var messageQueue = [];
 
@@ -410,7 +411,7 @@ function calcPlantInfo(signal) {
         watRet = ((10 - Math.abs(10 - P)) / 2) + ((150 - Math.abs(150 - K)) / 30);
         healthCalc = (photo + resp + watRet) / 3;
     }
-    immunity = (healthCalc / 2);
+    var immBonus = $(".potSquare").eq(corresNum).data("immBonus")
     if (healthCalc < 5.0) {
         healthHint = "poor";
     } else if (healthCalc >= 5.0 && healthCalc < 7.5) {
@@ -423,7 +424,9 @@ function calcPlantInfo(signal) {
     bugBonus = $(".potSquare").eq(corresNum).data("bugBonus");
     if (signal == 1) {
         constitution = 5.0 + Number(fertType.slice(0, 1));
+        immunity = (healthCalc / 2);
         $(".potSquare").eq(corresNum).data("constitution", constitution);
+        $(".potSquare").eq(corresNum).data("immunity", immunity);
     }
     if ($(".potSquare").eq(corresNum).data("plantType") === "aloe") {
         maxRevenue = aloeMR;
@@ -449,7 +452,6 @@ function calcPlantInfo(signal) {
     $(".potSquare").eq(corresNum).data("photosynthesis", photo);
     $(".potSquare").eq(corresNum).data("respiration", resp);
     $(".potSquare").eq(corresNum).data("waterRetention", watRet);
-    $(".potSquare").eq(corresNum).data("immunity", immunity);
     $(".potSquare").eq(corresNum).data("revenue", revenue);
 }
 signal = 0;
@@ -772,6 +774,130 @@ function pest() {
     thisThing();
 }
 
+var r = -1;
+var rr = -1;
+var killInt2;
+var potThing2;
+var diseaseThing;
+
+function diseaseSpread() {
+    var operation2 = [
+        -1,
+        1,
+        4,
+        -4,
+        -5,
+        -3,
+        3,
+        5
+    ];
+    var operationPick2 = potThing2 + operation2[Math.floor(Math.random() * 8)];
+    var worldTime;
+    var testThing2 = $(".potSquare").eq(operationPick2).data("plantType");
+    if ($(".potSquare").eq(operationPick2).data("diseaseType") == "none" && testThing2 !== "none" && typeof testThing2 !== 'undefined') {
+        rr = rr + 1;
+        blinkAlert("#announcementButton");
+        $(".potSquare").eq(operationPick2).data("diseaseType", diseaseThing);
+        diseaseArray();
+        disease();
+        worldTime = $("#hourDisplay").text() + ":" + $("#minuteDisplay").text();
+        $(".announcementAppend:first").before("<span class='announcementAppend'>" + worldTime + "&nbsp;<span class='bolded'>" + diseaseThing.slice(0, 1).toUpperCase() + diseaseThing.slice(1) + " has spread to pot " + (operationPick2 + 1) + "!</span></span><br>");
+        var messageVar = diseaseThing.slice(0, 1).toUpperCase() + diseaseThing.slice(1) + " has spread to pot " + (operationPick2 + 1) + "!";
+        miniAnnounce(messageVar);
+    } else {
+        diseaseSpread();
+    }
+}
+
+function diseaseArray() {
+    var thing, y, string;
+    thing = $(':data(diseaseType)');
+    diseaseId.length = 0;
+    revenue = 0;
+    revenueRel = 0;
+    moneyMoney();
+    for (y = 0; y < thing.length; y = y + 1) {
+        string = thing.eq(y).data("diseaseType");
+        if (string != "none") {
+            diseaseId.push(y);
+        }
+    }
+}
+
+function disease() {
+    var w;
+    plantArray();
+    diseaseArray();
+
+    function thisThing4() {
+        var clear = clearTimeout(killInt2);
+        killInt2 = setTimeout(function () {
+            for (w = 0; w < diseaseId.length; w = w + 1) {
+                plantArray();
+                diseaseArray();
+                var corresNum = $("#potName").html();
+                if ($(".potSquare").eq(diseaseId[w]).data("immunity") < 0.1) {
+                    plantArray();
+                    diseaseArray();
+                    $(".potSquare").eq(diseaseId[w]).data("immunity", 0.0);
+                    var sendDisease = $(".potSquare").eq(diseaseId[w]).data("diseaseType");
+                    potThing2 = diseaseId[w];
+                    diseaseThing = sendDisease;
+                    revertPlant(diseaseId[w]);
+                    plantArray();
+                    diseaseArray();
+                    diseaseSpread();
+                    plantArray();
+                    diseaseArray();
+                } else {
+                    $(".potSquare").eq(diseaseId[w]).data("immBonus", 0.1);
+                    $(".potSquare").eq(diseaseId[w]).data("immunity", $(".potSquare").eq(diseaseId[w]).data("immunity") - $(".potSquare").eq(diseaseId[w]).data("immBonus"));
+                }
+                if (corresNum == (diseaseId[w] + 1)) {
+                    plantStats();
+                }
+                thisThing4();
+            }
+        }, 1000);
+    }
+    thisThing4();
+}
+
+function diseaseInit() {
+    plantArray();
+    diseaseArray();
+    var diseaseList = [
+        "leaf spots",
+        "mildew",
+        "root rot",
+        "a fungus"
+    ];
+    var potRand = Math.floor(Math.random() * plantId.length);
+    var potChoice = plantId[potRand];
+    var diseaseRand = Math.floor(Math.random() * diseaseList.length);
+    var diseaseChoice = diseaseList[diseaseRand];
+    var randTime = Math.floor(Math.random() * 150000) + 90000;
+    var delay = setTimeout(function () {
+        plantArray();
+        diseaseArray();
+        if ($(".potSquare").eq(potChoice).data("diseaseType") == "none" && $(".potSquare").eq(potChoice).data("plantType") != "none") {
+            blinkAlert("#announcementButton");
+            $(".potSquare").eq(potChoice).data("diseaseType", diseaseChoice);
+            worldTime = $("#hourDisplay").text() + ":" + $("#minuteDisplay").text();
+            $(".announcementAppend:first").before("<span class='announcementAppend'>" + worldTime + "&nbsp;<span class='bolded'>Pot" + (potChoice + 1) + " is stricken with " + diseaseChoice + "!</span></span><br>");
+            disease(potChoice);
+            var messageVar = "Pot " + (potChoice + 1) + " is stricken with " + diseaseChoice + "!";
+            miniAnnounce(messageVar);
+            plantArray();
+            diseaseArray();
+        } else {
+            diseaseInit();
+        }
+        plantArray();
+        diseaseArray();
+    }, randTime);
+}
+
 function pestInit() {
     plantArray();
     pestArray();
@@ -866,6 +992,7 @@ $(document).ready(function () {
         $(".potSquare:last").data("pestType", "none");
         $(".potSquare:last").data("diseaseType", "none");
         $(".potSquare:last").data("bugBonus", 0);
+        $(".potSquare:last").data("immBonus", 0);
         $(".potSquare").click(function () {
             $("#invText").addClass("inactiveWindow");
             $("#plotText").addClass("inactiveWindow");
@@ -1109,6 +1236,7 @@ function plantSeed(div) {
     $(".plantCount").html(plantId.length);
     weedInit();
     pestInit();
+    diseaseInit();
     revenue = 0;
     revenueRel = 0;
     calcPlantInfo(1);
@@ -1502,6 +1630,7 @@ $("#shopPlots").click(function () {
             $(".potSquare:last").data("pestType", "none");
             $(".potSquare:last").data("diseaseType", "none");
             $(".potSquare:last").data("bugBonus", 0);
+            $(".potSquare:last").data("immBonus", 0);
             $(".plot" + (w + 1)).find(".potSquare").click(function () {
                 $("#invText").addClass("inactiveWindow");
                 $("#plotText").addClass("inactiveWindow");
@@ -1596,6 +1725,7 @@ function revertPlant(div) {
     $(':data(plantType)').eq(div).data("pestType", "none");
     $(':data(plantType)').eq(div).data("diseaseType", "none");
     $(':data(plantType)').eq(div).data("bugBonus", 0);
+    $(':data(plantType)').eq(div).data("immBonus", 0);
     plot.filled = plot.filled - 1;
     plot.potted = plot.potted - 1;
     pestArray();
@@ -1630,6 +1760,7 @@ function revertLine(div) {
     $(".potSquare").eq(div).data("pestType", "none");
     $(".potSquare").eq(div).data("diseaseType", "none");
     $(".potSquare").eq(div).data("bugBonus", 0);
+    $(".potSquare").eq(div).data("immBonus", 0);
     plot.filled = plot.filled - 1;
     plot.potted = plot.potted - 1;
     //pestArray();
@@ -2241,7 +2372,7 @@ $(document).ready(function () {
     setTimeout("seasonMake()", timeDiff);
 });
 $("#gameHead").click(function () {
-    alert($(".invFertilizer").length);
+    alert(diseaseId.length);
 });
 $(document).ready(function () {
     blinkInv = setInterval(function () {
